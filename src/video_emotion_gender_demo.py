@@ -69,7 +69,9 @@ while True:
 
         rgb_face = np.expand_dims(rgb_face, 0)
         rgb_face = preprocess_input(rgb_face, False)
+        rgb_face = np.transpose(rgb_face, (3, 1, 2,0))
         gender_prediction = gender_classifier.predict(rgb_face)
+        print('prediction',np.shape(gender_prediction))
         gender_label_arg = np.argmax(gender_prediction)
         gender_text = gender_labels[gender_label_arg]
         gender_window.append(gender_text)
